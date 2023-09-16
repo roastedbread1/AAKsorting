@@ -1,5 +1,3 @@
-//bubble sort
-
 const bubbleSort = (arr) => {
     let swapped;
     do {
