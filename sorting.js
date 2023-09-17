@@ -1,4 +1,22 @@
+
+    const { performance } = require('perf_hooks');
+    
+
+    const generateRandomArray = (length, min, max) => {
+        const arr = [];
+        for (let i =0; i<length; i++) {
+            arr.push(Math.floor(Math.random() * (max - min + 1) + min));
+        }
+        return arr;
+    }
+    const sortAll = (arr) => {
+        bubbleSort(arr);
+       selectionSort(arr);
+       insertionSort(arr);
+       quickSort(arr);
+    }
 const bubbleSort = (arr) => {
+    var start = performance.now();
     let swapped;
     do {
         swapped = false;
@@ -9,10 +27,12 @@ const bubbleSort = (arr) => {
             }
         }
     } while (swapped);
-    return arr;
+    var end = performance.now();
+    console.log("Time taken by bubble sort: " + (end - start) + " milliseconds");
 }
 
 const selectionSort = (arr) => {
+    var start = performance.now();
     let n = arr.length;
 
     for(let i=0; i<n; i++ ) {
@@ -28,10 +48,12 @@ const selectionSort = (arr) => {
             arr[min] = temp;
         }
     }
-    return arr;
+    var end = performance.now();
+    console.log("Time taken by selection sort: " + (end - start) + " milliseconds");
 }
 
 const insertionSort = (arr) => {
+    var start = performance.now();
     let n = arr.length;
     for(let i=1; i<n; i++) {
         let curr = arr[i];
@@ -42,10 +64,11 @@ const insertionSort = (arr) => {
         }
         arr[j+1] = curr;
     }
-    return arr;
+    var end = performance.now();
 }
 
 const quickSort = (arr) => {
+    var start = performance.now();
     let n = arr.length;
     if (n <=1){
         return arr;
@@ -62,5 +85,9 @@ const quickSort = (arr) => {
             right.push(arr[i]);
         }
     }
-    return [...quickSort(left), pivot, ...quickSort(right)];
+    var end = performance.now();
+    console.log("Time taken by quick sort: " + (end - start) + " milliseconds");
 }
+
+arr = generateRandomArray(10, 1, 100);
+sortAll(arr);
